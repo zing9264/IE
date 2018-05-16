@@ -1,0 +1,16 @@
+405410016 楊淨
+助教好
+我在這次作業中用了兩個main來測試Bag
+
+由於上星期已經完成 所以將實作與宣告分開了
+剛剛才發現改成合在一起，實在沒時間修改
+只要在main中 include "Bag.cpp" 即可使用bag class
+Make完之後 會有兩個.out檔
+
+mytestmain.out 是我改寫範例測資 增加更多測試資料的MAIN
+testmain.out 完全無修改 最原始的範例測資
+
+額外功能：
+
+建立資料時 其Node增加時會印出node constructed/dummy node constructed
+刪除資料時 其Node一併也刪掉時會印出node destructed
