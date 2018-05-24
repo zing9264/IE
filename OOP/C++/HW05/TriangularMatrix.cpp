@@ -64,7 +64,6 @@ int Matrix::size() const
     return matrixSize;
 }
 // operator------------------------operator--------------------------operator---------------------operator---------------------operator
-
 const Matrix &Matrix::operator=(const Matrix &m)
 {
     delete[] element;
