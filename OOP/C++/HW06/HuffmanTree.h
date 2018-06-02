@@ -19,6 +19,7 @@ public:
   virtual Node *getLChild() = 0;
   virtual Node *getRChild() = 0;
   Node *next;
+  Node *charnext;
 };
 
 //InternalNode 包含以下內容:
@@ -81,4 +82,5 @@ public:
 
 private:
   Node *root;
+  Node *charhead;
 };
