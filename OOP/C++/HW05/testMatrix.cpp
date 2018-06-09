@@ -1,112 +1,141 @@
-// Main Program Example for HW5
-
-// You can use this file as your main program, or add more functions if you want.
-// Please ***MAKE SURE*** that your class works fine in this main program.
-// TA will test your class by this program with additional test data.
-
-#include <iostream>
 #include "TriangularMatrix.h"
-// ****If you need to include more header files, add it here****
-
-using std::cin;
-using std::cout;
-using std::endl;
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 int main()
 {
-    Matrix M1, M2, M3;
-    cout << "* Assign values for matrix M1 *" << endl;
-    M1.readMatrix();
-    // ---This should be implemented in Matrix::readMatrix()---
-    // <prompt> specify number of rows:
-    // <user input> 3
-    // <prompt> is upper or lower triangular: (upper: 1, lower:0)
-    // <user input> 0
-    // <prompt> input elements of the matrix:
-    // <prompt> for example, if you want to create a lower-triangular matrix with following elements:
-    // <prompt> 4    0    0
-    // <prompt> 3    2.5  0
-    // <prompt> 1    2    2
-    // <prompt> please type: 4 3 2.5 1 2 2
+    Matrix M1, M2, M3, T1, U1;
 
-    cout << "* Assign values for matrix M2 *" << endl;
+    std::cout << "* Assign values for matrix M1 *" << std::endl;
+    std::stringbuf sb("3 0 3.2 7 5 9 6.3 11");
+    std::streambuf *backup = std::cin.rdbuf();
+    std::cin.rdbuf(&sb);
+    M1.readMatrix();
+    std::cin.rdbuf(backup);
+
+    std::cout << "* Assign values for matrix M2 *" << std::endl;
+    std::stringbuf sb2("3 0 2 8 4 5 19 6.1");
+    std::cin.rdbuf(&sb2);
     M2.readMatrix();
 
-    cout << "M1 is: " << M1 << endl
-         << endl;
-    cout << "M2 is: " << M2 << endl
-         << endl;
+    std::cout << "* Assign values for matrix T1 *" << std::endl;
+    std::stringbuf sb3("4 0 1 2 3 4 5 6 7 8 9 -1");
+    std::cin.rdbuf(&sb3);
+    T1.readMatrix();
+    std::cin.rdbuf(backup);
 
-    // Note that the size(row count) of M1, M2 may vary,
-    // also M1, M2 can be upper or lower triangular matrices.
-    // Therefore, please make sure that you check their types first before doing the calculation.
+    std::cout << "* Assign values for matrix U1 *" << std::endl;
+    std::stringbuf sb4("3 1 13 15 17 19 21 23");
+    std::cin.rdbuf(&sb4);
+    U1.readMatrix();
+    std::cin.rdbuf(backup);
 
-    cout << "M3 = M1 + M2" << endl;
-    M3 = M1 + M2;
-    cout << "Now M3 is: " << M3 << endl
-         << endl;
-    cout << "Now M1 is: " << M1 << endl
-         << endl;
-    cout << "Now M2 is: " << M2 << endl
-         << endl;
+    std::cout << "[test 1: readMatrix AND operator <<]" << std::endl;
+    std::cout << "[expected]" << std::endl;
+    std::cout << "3.2  0  0" << std::endl;
+    std::cout << "7  5  0" << std::endl;
+    std::cout << "9  6.3  11" << std::endl;
+    std::cout << "[result]" << std::endl;
+    std::cout << M1 << std::endl
+              << std::endl;
 
-    cout << "M3 = M1 - M2" << endl;
-    M3 = M1 - M2;
-    cout << "Now M3 is: " << M3 << endl
-         << endl;
-    cout << "Now M1 is: " << M1 << endl
-         << endl;
-    cout << "Now M2 is: " << M2 << endl
-         << endl;
+    std::cout << "[test 2: copy constructor and Operator =]" << std::endl;
+    std::cout << "[expected]" << std::endl;
+    std::cout << "3.2  0  0" << std::endl;
+    std::cout << "7  5  0" << std::endl;
+    std::cout << "9  6.3  11" << std::endl;
+    std::cout << "[result]" << std::endl;
+    Matrix M4(U1);
+    M4 = M1;
+    std::cout << M4 << std::endl
+              << std::endl;
 
-    cout << "M3 = M2 * 5" << endl;
-    M3 = M2 * 5;
-    cout << "Now M3 is: " << M3 << endl
-         << endl;
+    std::cout << "[test 3: size()]" << std::endl;
+    std::cout << "[expected] 3" << std::endl;
+    std::cout << "[result] size of M2 is: " << M2.size() << std::endl;
 
-    cout << "M3 -= M1" << endl;
-    M3 -= M1;
-    cout << "Now M3 is: " << M3 << endl
-         << endl;
-    cout << "Now M1 is: " << M1 << endl
-         << endl;
-
-    cout << "M3 += M1" << endl;
-    M3 += M1;
-    cout << "Now M3 is: " << M3 << endl
-         << endl;
-    cout << "Now M1 is: " << M1 << endl
-         << endl;
-
-    cout << "M3 = M2 * 2 * M1" << endl;
-    M3 = M2 * 2 * M1;
-    cout << "Now M3 is: " << M3 << endl
-         << endl;
-    cout << "Now M2 is: " << M2 << endl
-         << endl;
-    cout << "Now M1 is: " << M1 << endl
-         << endl;
-
-    cout << "M3 = 110 * M1" << endl;
-    M3 = 110 * M1;
-    cout << "Now M3 is: " << M3 << endl
-         << endl;
-
-    M1 *= M2;
-    cout << "M1=M1*M2" << M1;
-
-    Matrix M4 = M3;
-    cout << " Matrix M4 = M3 " << M4;
-    cout << "double d = M1(2,2)" << endl;
+    std::cout << "[test4: operator()]" << std::endl;
+    std::cout << "[expected] 5" << std::endl;
     double d = M1(2, 2);
-    cout << "Now d is: " << d << endl
-         << endl;
-    cout << "M3 size is " << M3.size() << endl;
-    cout << "M2(4,4) equals to: " << M2(4, 4) << endl
-         << endl;
+    std::cout << "d is: " << d << std::endl
+              << std::endl;
 
-    cout << "---------- END PROGRAM ----------" << endl
-         << endl;
+    std::cout << "[test5: operator+-*(Matrix to Matrix)(part1)]" << std::endl;
+    std::cout << "[expected]" << std::endl;
+    std::cout << "5.2  0  0" << std::endl;
+    std::cout << "15  9  0" << std::endl;
+    std::cout << "14  25.3  17.1" << std::endl;
+    M3 = M1 + M2;
+    std::cout << "[result]" << std::endl;
+    std::cout << M3 << std::endl
+              << std::endl;
 
+    std::cout << "[test5: operator+-* (Matrix to Matrix) (part2)]" << std::endl;
+    std::cout << "[expected]" << std::endl;
+    std::cout << "6.4  0  0" << std::endl;
+    std::cout << "53.6  20  0" << std::endl;
+    std::cout << "203.9  133.43  67.1" << std::endl;
+    M3 = M2 * M1;
+    std::cout << "[result]" << std::endl;
+    std::cout << M3 << std::endl
+              << std::endl;
+
+    std::cout << "[test5: operator+-* (Matrix to Matrix) (part3)]" << std::endl;
+    std::cout << "[expected]" << std::endl;
+    std::cout << "169  480  927" << std::endl;
+    std::cout << "0  361  882" << std::endl;
+    std::cout << "0  0  529" << std::endl;
+    M3 = U1 * U1;
+    std::cout << "[result]" << std::endl;
+    std::cout << M3 << std::endl
+              << std::endl;
+
+    std::cout << "[test5: operator+-* (Matrix to Matrix) (part4)]" << std::endl;
+    std::cout << "[expected] print error message" << std::endl;
+    std::cout << "[result]" << std::endl;
+    M3 = M1 * T1;
+    std::cout << std::endl
+              << std::endl;
+
+    std::cout << "[test5: operator+-* (Matrix to Matrix) (part5)]" << std::endl;
+    std::cout << "[expected] print error message" << std::endl;
+    std::cout << "[result]" << std::endl;
+    M3 = M1 - U1;
+    std::cout << std::endl
+              << std::endl;
+
+    std::cout << "[test6: operator* (Matrix to double)]" << std::endl;
+    std::cout << "[expected]" << std::endl;
+    std::cout << "-26.88  0  0" << std::endl;
+    std::cout << "-23.8  -35  0" << std::endl;
+    std::cout << "-339.5  933.8  -377.3" << std::endl;
+    M3 = M1 * 7 * (M2 - M1);
+    std::cout << "[result]" << std::endl;
+    std::cout << M3 << std::endl
+              << std::endl;
+
+    std::cout << "[test7: operator *= (Matrix to double)]" << std::endl;
+    std::cout << "[expected]" << std::endl;
+    std::cout << "10  0  0" << std::endl;
+    std::cout << "40  20  0" << std::endl;
+    std::cout << "25  95  30.5" << std::endl;
+    M3 = M2 * 5;
+    std::cout << "[result]" << std::endl;
+    std::cout << M3 << std::endl
+              << std::endl;
+
+    std::cout << "[test8: operator += -= *= (Matrix to Matrix)]" << std::endl;
+    std::cout << "[expected]" << std::endl;
+    std::cout << "6.8  0  0" << std::endl;
+    std::cout << "33  15  0" << std::endl;
+    std::cout << "16  88.7  19.5" << std::endl;
+    M3 -= M1;
+    std::cout << "[result]" << std::endl;
+    std::cout << M3 << std::endl
+              << std::endl;
+
+    std::cout << "---------- END PROGRAM ----------" << std::endl
+              << std::endl;
     return 0;
 }

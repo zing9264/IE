@@ -61,7 +61,10 @@
         "new": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "unistd.h": "c",
+        "functional": "c",
+        "cerrno": "c"
     },
     "C_Cpp.dimInactiveRegions": false
 }
