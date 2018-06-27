@@ -64,7 +64,10 @@
         "stack": "cpp",
         "unistd.h": "c",
         "functional": "c",
-        "cerrno": "c"
+        "cerrno": "c",
+        "list": "c",
+        "deque": "c",
+        "unordered_map": "c"
     },
     "C_Cpp.dimInactiveRegions": false
 }

@@ -1,0 +1,32 @@
+系統程式
+作業十
+
+
+ 3 作業內容
+• 修改 ch10 的 shell_sigfd 範例或是之前作業中 shell_sigaction，新的新的 shell 名為
+shell_pipe，新的shell_pipe 可以使用 pipe 串接數個程式，新的例如：
+        ◦ ls -R --color / | sort | more
+
+• 將使用 pipe 串接的程式設定為同一 process group，新的使得使用者按下 ctr-c 時可以同時中斷所有
+程式。
+        ◦ 以 ls -R --color / | sort | more 為例，新的必須讓 ls、sort、more 成為同一個 process group，新的當
+        使用者按下 ctr-c 時必須送出 ctr-c 給這個 process group。
+
+
+ 作業要求
+• code 需排版，新的限用 c 語言（不含 c++）。
+• pipeline 會串接以 “|” 為分割的不同程式。
+• 當使用者執行的 pipeline 上包含多個程式時，新的按下 ctr-c 會同時結束整個 pipeline。
+
+
+code (90%) = pipeline 上的程式能正確的依序執行。 (10%)
++ pipeline 的程式間能正確的傳遞結果。 (50%)
++ pipeline 在收到 ctr-c 之後會整個結束。 （30%)
+makefile (10%)
+包含所有 code、makefile，新的助教執行 make 後必須產生執行檔，新的執行檔名稱「shell_pipe」。
+繳交.zipzip 檔，新的限用.zipzip 檔，新的檔名為 學號_hw10.ziphw10.zipzip。
+請上傳之後再下載一次檢查有無損毀，新的若評分時有損毀視同未交。
+
+
+ 繳交期限
+2018/6/26

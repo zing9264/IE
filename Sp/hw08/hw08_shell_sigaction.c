@@ -111,7 +111,7 @@ void handler(int sig,siginfo_t *fdsi,void *ctx)
         } 
         else {
              printf("\n");
-             printPrompt();
+             \printPrompt();
         return;
         }
     }
